@@ -1,8 +1,8 @@
-###  DATE: 
+###  DATE: 14.3.2024
 
-###  NAME: 
-###  ROLL NO :
-###  DEPARTMENT: 
+###  NAME: SACHIN.C
+###  ROLL NO : 212222230125
+###  DEPARTMENT: AI-DS
 
 
 # EXPERIMENT NO 05 INTERFACING ANALOG OUTPUT SERVO MOTOR WITH ARDUINO
@@ -26,10 +26,7 @@ Servo motors and are constructed out of basic DC motors, by adding:
 Typically, a potentiometer (variable resistor) measures the position of the output shaft at all times so the controller can accurately place and maintain its setting.
 Servo motors are used for angular positioning, such as in radio control airplanes.  They typically have a movement range of 180 deg but can go up to 210 deg.The output shaft of a servo does not rotate freely, but rather is made to seek a particular angular position under electronic control. 
 
-
 ![image](https://user-images.githubusercontent.com/36288975/163544439-1f477927-fcd4-42f0-9ce4-c863fdbf1210.png)
-
-
 
 #### Figure-01 SERVO MOTOR SPLIT VIEW 
 Control 
@@ -44,13 +41,6 @@ An external controller (such as the Arduino) tells the servo where to go with a 
 
 
 ### Figure-03 SERVO MOTOR OVERVIEW 
-
- 
-
-
- 
-
-
 
 
 
@@ -72,17 +62,40 @@ CIRCUIT DIAGRAM
 8.	Upload the program and check for the physical working. 
 9.	Ensure safety before powering up the device.
 
-
 ### PROGRAM :
- 
+```c++
+#include<Servo.h>
 
+Servo s1;
+int pos=0;
 
+void setup()
+{
+  s1.attach(9);
+  Serial.begin(9600);
+}
 
-
-
-
-
-
+void loop()
+{
+  for(pos=0;pos<=180;pos++)
+  {
+    s1.write(pos);
+    delay(20);
+    //Serial.print("Angle = ");
+    Serial.println(pos);
+    
+  }
+  
+  for(pos=180;pos>=0;pos--)
+  {
+    s1.write(pos);
+    delay(20);
+    //Serial.print("Angle = ");
+    Serial.println(pos);
+    
+  } 
+}
+```
 
 ### RESULTS: 
 Arduino uno interfacing with servo motor is learned and angular position is controlled using PWM signal.
